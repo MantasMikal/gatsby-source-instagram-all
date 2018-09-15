@@ -12,8 +12,9 @@ Gatsby source plugin to fetch ALL your instagram media.
       }
  }
  ```
- # Usage
- Query data like this:
+# Usage
+Query data like this:
+
  ```
  query myQuery {
        allInstagramContent {

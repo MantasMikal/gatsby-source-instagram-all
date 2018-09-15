@@ -1,0 +1,31 @@
+{
+  "name": "gatsby-source-instagram-all",
+  "description": "Gatsby source plugin for fetching all instagram posts",
+  "version": "1.0.0",
+  "author": "Mantas Mikalauskas <mikalauskas.it@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/MantasMikal/gatsby-source-instagram-all"
+  },
+  "homepage": "https://github.com/MantasMikal/gatsby-source-instagram-all",
+  "main": "index.js",
+  "license": "MIT",
+
+  "dependencies": {
+    "node-fetch": "^2.2.0",
+    "query-string": "^6.1.0"
+  },
+  "peerDependencies": {
+    "gatsby": ">2.0.0-alpha"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "source",
+    "instagram",
+    "api",
+    "all",
+    "post",
+    "fetch"
+   
+  ]
+}

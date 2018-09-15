@@ -2,7 +2,7 @@
 Gatsby source plugin to fetch your ALL instagram media.
 
 # Install
- 1. yarn add gatsby-source-instagram-api
+ 1. ```yarn add gatsby-source-instagram-api```
  2. Add configuration to your gatsby-config.js
  ```
  {

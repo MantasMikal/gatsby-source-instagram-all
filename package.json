@@ -7,6 +7,7 @@
     "url": "https://github.com/MantasMikal/gatsby-source-instagram-all"
   },
   "homepage": "https://github.com/MantasMikal/gatsby-source-instagram-all",
+  "repository": "https://github.com/MantasMikal/gatsby-source-instagram-all",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {

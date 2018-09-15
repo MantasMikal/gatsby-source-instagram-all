@@ -1,5 +1,5 @@
 # gatsby-source-instagram-all
-Gatsby source plugin to fetch your ALL instagram media.
+Gatsby source plugin to fetch ALL your instagram media.
 
 # Install
  1. ```yarn add gatsby-source-instagram-all```

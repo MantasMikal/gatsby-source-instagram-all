@@ -1,5 +1,5 @@
 # gatsby-source-instagram-all
-Gatsby source plugin to fetch ALL your instagram media.
+Gatsby source plugin to fetch ALL your instagram media using Instagram API + [Gatsby Image](https://www.gatsbyjs.org/packages/gatsby-image/) support.
 
 # Install
  1. ```yarn add gatsby-source-instagram-all```
@@ -20,6 +20,13 @@ Query data like this:
        allInstagramContent {
          edges {
            node {
+            localImage{ 
+              childImageSharp {
+                fluid(maxHeight: 500, maxWidth: 500 quality: 90) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
              images {
                standard_resolution {
                  url
@@ -30,3 +37,4 @@ Query data like this:
        }
     }
  ```
+ You can also get videos, comments, likes, tags etc. Read [Instagram API Docs](https://www.instagram.com/developer/endpoints/users/) for example response.

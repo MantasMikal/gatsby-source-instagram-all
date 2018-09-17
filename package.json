@@ -1,21 +1,35 @@
 {
   "name": "gatsby-source-instagram-all",
   "description": "Gatsby source plugin for fetching all instagram posts",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "author": "Mantas Mikalauskas <mikalauskas.it@gmail.com>",
   "bugs": {
     "url": "https://github.com/MantasMikal/gatsby-source-instagram-all"
   },
   "homepage": "https://github.com/MantasMikal/gatsby-source-instagram-all",
-  "repository": "https://github.com/MantasMikal/gatsby-source-instagram-all",
-  "main": "index.js",
+  "main": "gatsby-node.js",
   "license": "MIT",
+  "scripts": {
+    "build": "babel src --out-dir dist --ignore **/__tests__",
+    "watch": "babel --watch src --out-dir dist --ignore **/__tests__",
+    "format": "prettier --write src/**/*.js",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "yarn run build"
+  },
   "dependencies": {
+    "gatsby-source-filesystem": "^2.0.1-rc.6",
     "node-fetch": "^2.2.0",
     "query-string": "^6.1.0"
   },
   "peerDependencies": {
     "gatsby": ">2.0.0-alpha"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.1",
+    "@babel/node": "^7.0.0-beta.54",
+    "@babel/preset-env": "^7.0.0",
+    "prettier": "^1.13.7"
   },
   "keywords": [
     "gatsby",

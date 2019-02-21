@@ -7,6 +7,7 @@ async function onCreateNode({ node, cache, actions, store, createNodeId }) {
     try {
       fileNode = await createRemoteFileNode({
         url: node.images.standard_resolution.url,
+        parentNodeId: node.id,
         store,
         cache,
         createNode,

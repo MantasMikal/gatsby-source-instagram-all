@@ -25,8 +25,8 @@ async function sourceNodes({
   const getData = async (url, data = []) => {
     let response = await fetchAndParse(url);
     //Premature error handling
-    if (response.meta.code !== 200) {
-      console.error('\nINSTAGRAM API ERROR: ', response.meta.error_message);
+    if (response.code !== 200) {
+      console.error('\nINSTAGRAM API ERROR: ', response.error_message);
       return data
     }
 

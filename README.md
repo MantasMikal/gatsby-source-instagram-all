@@ -15,7 +15,7 @@
  }
  ```
  👓 A quick way to get your [access token](http://instagram.pixelunion.net/)
-# Usage
+# How to use
 Query data like this:
 
  ```

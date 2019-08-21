@@ -1,7 +1,7 @@
 # gatsby-source-instagram-all
 ⚛️📸 Gatsby source plugin to fetch ALL your instagram media from Instagram API + [Gatsby Image](https://www.gatsbyjs.org/packages/gatsby-image/) support.
 
-[![Demo](https://i.imgur.com/xHgFi3A.png)](https://gatsby-instagram.netlify.com)
+[![Demo](https://i.imgur.com/xHgFi3A.png)](https://github.com/MantasMikal/gatsby-instagram)
 
 # Install
  1. ```yarn add gatsby-source-instagram-all```

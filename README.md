@@ -41,3 +41,12 @@ Query data like this:
     }
  ```
  You can also get videos, comments, likes, tags etc. Read [Instagram API Docs](https://www.instagram.com/developer/endpoints/users/) for example response.
+
+ ## Plugin Options
+
+Option | Type | Description
+-- | -- | --
+access_token | string | Your access token
+max_id | string (optional) | Option to return media earlier than, but not including, this max_id
+min_id | string (optional) | Option to return media later than, and including, this min_id
+

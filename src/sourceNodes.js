@@ -14,17 +14,16 @@ async function sourceNodes({
   const apiOptions = queryString.stringify(configOptions)
   const apiUrl = `https://api.instagram.com/v1/users/self/media/recent/?${apiOptions}&count=30`
 
-  //Helper Function to fetch and parse data to JSON
+  // Helper Function to fetch and parse data to JSON
   const fetchAndParse = async (api) => {
     const data = await fetch(api);
     const response = await data.json();
 
     return response;
   }
-  //Helper to recursiveley get data from Instagram api
+  // Helper to recursiveley get data from Instagram api
   const getData = async (url, data = []) => {
     let response = await fetchAndParse(url);
-    //Premature error handling
     if (response.meta.code !== 200) {
       console.error('\nINSTAGRAM API ERROR: ', response.meta.error_message);
       return data
@@ -40,7 +39,7 @@ async function sourceNodes({
     return data
   }
 
-  //Creates nodes
+  // Creates nodes
   const createNodes = async (API) => {
     await getData(API).then(res => {
       res.forEach(item => {

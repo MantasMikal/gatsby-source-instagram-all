@@ -1,5 +1,6 @@
-## THIS PLUGIN WILL STOP WORKING ON March 31st, 2020
-https://www.instagram.com/developer/
+# PLUGIN WILL STOP WORKING ON March 31st, 2020
+[Read more](https://www.instagram.com/developer/)
+
 
 
 ⚛️📸 Gatsby source plugin to fetch ALL your instagram media from Instagram API + [Gatsby Image](https://www.gatsbyjs.org/packages/gatsby-image/) support.

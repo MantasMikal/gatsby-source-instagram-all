@@ -1,5 +1,5 @@
 # PLUGIN WILL STOP WORKING ON March 31st, 2020
-[Read more](https://www.instagram.com/developer/)
+[Instagram deprecates its old API on March 31st, 2020](https://www.instagram.com/developer/)
 
 
 

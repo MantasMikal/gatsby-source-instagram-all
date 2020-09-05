@@ -12,7 +12,7 @@ async function sourceNodes({
 
   delete configOptions.plugins
   const apiOptions = queryString.stringify(configOptions)
-  const apiUrl = `https://api.instagram.com/v1/users/self/media/recent/?${apiOptions}&count=30`
+  const apiUrl = `https://graph.instagram.com/me/media?fields=id,media_url,caption&${apiOptions}&limit=30`
 
   // Helper Function to fetch and parse data to JSON
   const fetchAndParse = async (api) => {
@@ -24,13 +24,14 @@ async function sourceNodes({
   // Helper to recursiveley get data from Instagram api
   const getData = async (url, data = []) => {
     let response = await fetchAndParse(url);
-    if (response.meta.code !== 200) {
-      console.error('\nINSTAGRAM API ERROR: ', response.meta.error_message);
+    if(response.error !== undefined){
+      console.error('\nINSTAGRAM API ERROR: ', response.error.message);
       return data
     }
 
     data = data.concat(response.data)
-    let next_url = response.pagination.next_url;
+    let next_url = response.paging.next;
+
 
     if (next_url !== undefined) {
       return getData(next_url, data)

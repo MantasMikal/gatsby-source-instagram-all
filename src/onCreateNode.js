@@ -6,7 +6,7 @@ async function onCreateNode({ node, cache, actions, store, createNodeId }) {
   if (node.internal.type === "InstagramContent") {
     try {
       fileNode = await createRemoteFileNode({
-        url: node.images.standard_resolution.url,
+        url: node.media_url,
         parentNodeId: node.id,
         store,
         cache,

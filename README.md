@@ -47,3 +47,10 @@ access_token | string | Your access token
 max_id | string (optional) | Option to return media earlier than, but not including, this max_id
 min_id | string (optional) | Option to return media later than, and including, this min_id
 
+## Contrubute
+
+1. [Fork it](https://github.com/MantasMikal/gatsby-source-instagram-al/fork)
+2. Create your feature branch `git checkout -b feature/fooBar`
+3. Commit your changes `git commit -am 'Add some fooBar'`
+4. Push to the branch `git push origin feature/fooBar`
+5. Create a new Pull Request

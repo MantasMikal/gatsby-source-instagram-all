@@ -20,23 +20,24 @@
 Query data like this:
 
  ```
- query myQuery {
-       allInstagramContent {
-         edges {
-           node {
-            caption
-            media_url
-            localImage{
-              childImageSharp {
-                fluid(maxHeight: 500, maxWidth: 500 quality: 90) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
+query myQuery {
+  allInstagramContent {
+    edges {
+      node {
+        caption
+        media_url
+        localImage {
+          childImageSharp {
+            fluid(maxHeight: 500, maxWidth: 500, quality: 90) {
+              ...GatsbyImageSharpFluid_withWebp
             }
-           }
-         }
-       }
+          }
+        }
+      }
     }
+  }
+}
+
  ```
 
  ## Plugin Options

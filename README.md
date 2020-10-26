@@ -20,23 +20,24 @@
 Query data like this:
 
  ```
- query myQuery {
-       allInstagramContent {
-         edges {
-           node {
-            caption
-            media_url
-            localImage{
-              childImageSharp {
-                fluid(maxHeight: 500, maxWidth: 500 quality: 90) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
+query myQuery {
+  allInstagramContent {
+    edges {
+      node {
+        caption
+        media_url
+        localImage {
+          childImageSharp {
+            fluid(maxHeight: 500, maxWidth: 500, quality: 90) {
+              ...GatsbyImageSharpFluid_withWebp
             }
-           }
-         }
-       }
+          }
+        }
+      }
     }
+  }
+}
+
  ```
 
  ## Plugin Options
@@ -47,3 +48,10 @@ access_token | string | Your access token
 max_id | string (optional) | Option to return media earlier than, but not including, this max_id
 min_id | string (optional) | Option to return media later than, and including, this min_id
 
+## Contribute
+
+1. [Fork it](https://github.com/MantasMikal/gatsby-source-instagram-al/fork)
+2. Create your feature branch `git checkout -b feature/fooBar`
+3. Commit your changes `git commit -am 'Add some fooBar'`
+4. Push to the branch `git push origin feature/fooBar`
+5. Create a new Pull Request

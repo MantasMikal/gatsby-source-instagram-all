@@ -7,7 +7,7 @@ async function sourceNodes({ actions, createNodeId }, configOptions) {
 
   delete configOptions.plugins
   const apiOptions = queryString.stringify(configOptions)
-  const apiUrl = `https://graph.instagram.com/me/media?fields=id,media_url,media_type,permalink,caption&${apiOptions}&limit=30`
+  const apiUrl = `https://graph.instagram.com/me/media?fields=id,ig_id,media_url,media_type,permalink,timestamp,caption&${apiOptions}&limit=30`
 
   // Helper Function to fetch and parse data to JSON
   const fetchAndParse = async (api) => {
@@ -39,7 +39,7 @@ async function sourceNodes({ actions, createNodeId }, configOptions) {
   const createNodes = async (API) => {
     await getData(API).then((res) => {
       res.forEach((item) => {
-        if (item.id !== undefined && item.media_type === "IMAGE") {
+        if (item.id !== undefined && ["IMAGE", "CAROUSEL_ALBUM"].includes(item.media_type)) {
           const nodeData = processPhoto(item)
           createNode(nodeData)
         }

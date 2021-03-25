@@ -7,9 +7,9 @@ async function sourceNodes({ actions, createNodeId }, configOptions) {
 
   delete configOptions.plugins
   const apiOptions = queryString.stringify(configOptions)
-  const apiUrl = `https://graph.instagram.com/me/media?fields=id,media_url,media_type,permalink,timestamp,caption,username,thumbnail_url&${apiOptions}&limit=30`; // Helper Function to fetch and parse data to JSON
+  const apiUrl = `https://graph.instagram.com/me/media?fields=id,media_url,media_type,permalink,timestamp,caption,username,thumbnail_url&${apiOptions}&limit=30`
 
-  // Helper Function to fetch and parse data to JSON
+  // Helper function to fetch and parse data to JSON
   const fetchAndParse = async (api) => {
     const data = await fetch(api)
     const response = await data.json()
@@ -24,7 +24,6 @@ async function sourceNodes({ actions, createNodeId }, configOptions) {
       console.error("\nINSTAGRAM API ERROR: ", response.error.message)
       return data
     }
-
     data = data.concat(response.data)
     let next_url = response.paging.next
 
@@ -35,13 +34,13 @@ async function sourceNodes({ actions, createNodeId }, configOptions) {
     return data
   }
 
-  // Creates nodes
+  // Create nodes
   const createNodes = async (API) => {
     await getData(API).then((res) => {
       res.forEach((item) => {
         if (item.id !== undefined && ["IMAGE", "CAROUSEL_ALBUM", "VIDEO"].includes(item.media_type)) {
-          const nodeData = processPhoto(item);
-          createNode(nodeData);
+          const nodeData = processPhoto(item)
+          createNode(nodeData)
         }
       })
     })
@@ -64,12 +63,13 @@ async function sourceNodes({ actions, createNodeId }, configOptions) {
       internal: {
         type: `InstagramContent`,
         content: nodeContent,
-        contentDigest: nodeContentDigest,
-      },
+        contentDigest: nodeContentDigest
+      }
     })
 
     return nodeData
   }
+
   return createNodes(apiUrl)
 }
 export default sourceNodes

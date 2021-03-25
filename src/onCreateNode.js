@@ -1,4 +1,4 @@
-import {createRemoteFileNode} from "gatsby-source-filesystem"
+import { createRemoteFileNode } from "gatsby-source-filesystem"
 
 async function onCreateNode({ node, cache, actions, store, createNodeId }) {
   let fileNode
@@ -14,12 +14,12 @@ async function onCreateNode({ node, cache, actions, store, createNodeId }) {
         createNodeId
       })
     } catch (e) {
-      console.log("ERROR: ", e);
+      console.log("ERROR: ", e)
     }
   }
-    if (fileNode) {
-      node.localImage___NODE = fileNode.id
-    }
+  if (fileNode) {
+    node.localImage___NODE = fileNode.id
+  }
 }
 
 export default onCreateNode

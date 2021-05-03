@@ -28,9 +28,7 @@ query myQuery {
         media_url
         localImage {
           childImageSharp {
-            fluid(maxHeight: 500, maxWidth: 500, quality: 90) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
+            gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
           }
         }
       }

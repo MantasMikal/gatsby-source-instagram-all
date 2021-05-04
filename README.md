@@ -37,8 +37,20 @@ query myQuery {
 }
 
  ```
+## Graphql fields
+Field Name | Description
+-- | --
+caption | The Media's caption text
+localImage | The local image to be used with Gatsby image.
+id | The Media's ID.
+media_type | The Media's type. Can be IMAGE, VIDEO, or CAROUSEL_ALBUM.
+media_url | The Media's URL.
+permalink | The Media's permanent URL. Will be omitted if the Media contains copyrighted material, or has been flagged for a copyright violation.
+thumbnail_url | The Media's thumbnail image URL. Only available on VIDEO Media.
+timestamp | The Media's publish date in ISO 8601 format.
+username | The Media owner's username.
 
- ## Plugin Options
+## Plugin Options
 
 Option | Type | Description
 -- | -- | --

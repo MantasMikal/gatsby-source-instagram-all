@@ -4,14 +4,15 @@ async function onCreateNode({ node, cache, actions, store, createNodeId }) {
   let fileNode
   const { createNode } = actions
   if (node.internal.type === "InstagramContent") {
+    const URL = node.media_type === "VIDEO" ? node.thumbnail_url : node.media_url
     try {
       fileNode = await createRemoteFileNode({
-        url: node.media_url,
+        url: URL,
         parentNodeId: node.id,
         store,
         cache,
         createNode,
-        createNodeId
+        createNodeId,
       })
     } catch (e) {
       console.log("ERROR: ", e)

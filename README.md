@@ -1,4 +1,4 @@
-⚛️📸 Gatsby source plugin to fetch ALL your instagram media from Instagram API + [Gatsby Image](https://www.gatsbyjs.org/packages/gatsby-image/) support.
+⚛️📸 Gatsby source plugin to fetch ALL your instagram media from Instagram API + [Gatsby Image](https://www.gatsbyjs.com/plugins/gatsby-plugin-image) support.
 
 [![Demo](https://i.imgur.com/xHgFi3A.png)](https://github.com/MantasMikal/gatsby-instagram)
 
@@ -41,7 +41,7 @@ query myQuery {
 Field Name | Description
 -- | --
 caption | The Media's caption text
-localImage | The local image to be used with Gatsby image.
+localImage | The local image.
 id | The Media's ID.
 media_type | The Media's type. Can be IMAGE, VIDEO, or CAROUSEL_ALBUM.
 media_url | The Media's URL.

@@ -4,10 +4,13 @@ import queryString from "query-string"
 
 async function sourceNodes({ actions, createNodeId }, configOptions) {
   const { createNode } = actions
-
   delete configOptions.plugins
   const apiOptions = queryString.stringify(configOptions)
-  const apiUrl = `https://graph.instagram.com/me/media?fields=id,media_url,media_type,permalink,timestamp,caption,username,thumbnail_url&${apiOptions}&limit=30`
+  const apiUrl = `https://graph.instagram.com/me/media?\
+  fields=id,media_url,media_type,permalink,timestamp,caption,username,thumbnail_url,children{id,media_url,media_type,thumbnail_url,timestamp}\
+  &${apiOptions}\
+  &limit=30
+  `
 
   // Helper function to fetch and parse data to JSON
   const fetchAndParse = async (api) => {
@@ -39,25 +42,26 @@ async function sourceNodes({ actions, createNodeId }, configOptions) {
     await getData(API).then((res) => {
       res.forEach((item) => {
         if (item.id !== undefined && ["IMAGE", "CAROUSEL_ALBUM", "VIDEO"].includes(item.media_type)) {
-          const nodeData = processPhoto(item)
+          const nodeData = processMedia(item)
           createNode(nodeData)
         }
       })
     })
   }
 
-  // Processes a photo to match Gatsby's node structure
-  const processPhoto = (photo) => {
-    const nodeId = createNodeId(`instagram-photo-${photo.id}`)
-    const nodeContent = JSON.stringify(photo)
+  // Processes a media to match Gatsby's node structure
+  const processMedia = (media) => {
+    media.album = media.children && media.children.data.length && media.children.data.map(node => node)
+    const nodeId = createNodeId(`instagram-media-${media.id}`)
+    const nodeContent = JSON.stringify(media)
     const nodeContentDigest = crypto
       .createHash("md5")
       .update(nodeContent)
       .digest("hex")
 
-    const nodeData = Object.assign({}, photo, {
+    const nodeData = Object.assign({}, media, {
       id: nodeId,
-      media_id: photo.id,
+      media_id: media.id,
       parent: null,
       children: [],
       internal: {

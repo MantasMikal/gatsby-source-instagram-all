@@ -29,13 +29,13 @@ query myQuery {
       node {
         caption
         media_url
-        localImage {
+        localFile {
           childImageSharp {
             gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
           }
         }
         album {
-          localImage {
+          localFile {
             childImageSharp {
               gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
             }
@@ -53,7 +53,7 @@ query myQuery {
 | Field Name    | Description                                                                                                                           |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | caption       | The Media's caption text                                                                                                              |
-| localImage    | The local image.                                                                                                                      |
+| localFile     | The local image.                                                                                                                      |
 | id            | The Media's ID.                                                                                                                       |
 | media_type    | The Media's type. Can be IMAGE, VIDEO, or CAROUSEL_ALBUM.                                                                             |
 | media_url     | The Media's URL.                                                                                                                      |
@@ -61,7 +61,7 @@ query myQuery {
 | thumbnail_url | The Media's thumbnail image URL. Only available on VIDEO Media.                                                                       |
 | timestamp     | The Media's publish date in ISO 8601 format.                                                                                          |
 | username      | The Media owner's username.                                                                                                           |
-
+| album         | The CAROUSEL_ALBUM media. Has the same fields as the root media node                                                                  | 
 ## Plugin Options
 
 | Option       | Type              | Description                                                         |
@@ -72,7 +72,7 @@ query myQuery {
 
 ## Contribute
 
-1. [Fork it](https://github.com/MantasMikal/gatsby-source-instagram-al/fork)
+1. [Fork it](https://github.com/MantasMikal/gatsby-source-instagram-all/fork)
 2. Create your feature branch `git checkout -b feature/fooBar`
 3. Commit your changes `git commit -am 'Add some fooBar'`
 4. Push to the branch `git push origin feature/fooBar`

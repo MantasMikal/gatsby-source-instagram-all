@@ -1,7 +1,7 @@
 {
   "name": "gatsby-source-instagram-all",
   "description": "Gatsby source plugin for fetching all instagram posts",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "author": "Mantas Mikalauskas <mantas.codes@gmail.com>",
   "bugs": {
     "url": "https://github.com/MantasMikal/gatsby-source-instagram-all"
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "gatsby-source-filesystem": "^4.0.0",
-    "node-fetch": "^3.0.0",
+    "node-fetch": "^2.6.5",
     "query-string": "^7.0.1"
   },
   "peerDependencies": {

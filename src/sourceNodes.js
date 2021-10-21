@@ -28,9 +28,9 @@ async function sourceNodes({ actions, createNodeId }, configOptions) {
       return data
     }
     data = data.concat(response.data)
-    let next_url = response.paging.next
+    let next_url = response?.paging?.next
 
-    if (next_url !== undefined) {
+    if (next_url) {
       return getData(next_url, data)
     }
 

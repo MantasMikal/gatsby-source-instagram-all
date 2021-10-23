@@ -23,7 +23,7 @@
     "query-string": "^7.0.1"
   },
   "peerDependencies": {
-    "gatsby": ">4.0.0"
+    "gatsby": "^4.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.7",

@@ -1,8 +1,9 @@
 import crypto from "crypto"
 import fetch from "node-fetch"
 import queryString from "query-string"
+import createInstagramNode from "./createInstagramNode"
 
-async function sourceNodes({ actions, createNodeId }, configOptions) {
+async function sourceNodes({ actions, createNodeId, getCache }, configOptions) {
   const { createNode } = actions
   delete configOptions.plugins
   const apiOptions = queryString.stringify(configOptions)
@@ -39,25 +40,21 @@ async function sourceNodes({ actions, createNodeId }, configOptions) {
 
   // Create nodes
   const createNodes = async (API) => {
-    await getData(API).then((res) => {
-      res.forEach((item) => {
-        if (item.id !== undefined && ["IMAGE", "CAROUSEL_ALBUM", "VIDEO"].includes(item.media_type)) {
-          const nodeData = processMedia(item)
-          createNode(nodeData)
-        }
-      })
-    })
+    const data = await getData(API).then((res) => res)
+    for (const item of data) {
+      if (item.id !== undefined && ["IMAGE", "CAROUSEL_ALBUM", "VIDEO"].includes(item.media_type)) {
+        const nodeData = await processMedia(item)
+        createNode(nodeData)
+      }
+    }
   }
 
   // Processes a media to match Gatsby's node structure
-  const processMedia = (media) => {
-    media.album = media.children && media.children.data.length && media.children.data.map(node => node)
+  const processMedia = async (media) => {
+    media.album = media.children && media.children.data.length && media.children.data.map((node) => node)
     const nodeId = createNodeId(`instagram-media-${media.id}`)
     const nodeContent = JSON.stringify(media)
-    const nodeContentDigest = crypto
-      .createHash("md5")
-      .update(nodeContent)
-      .digest("hex")
+    const nodeContentDigest = crypto.createHash("md5").update(nodeContent).digest("hex")
 
     const nodeData = Object.assign({}, media, {
       id: nodeId,
@@ -67,9 +64,12 @@ async function sourceNodes({ actions, createNodeId }, configOptions) {
       internal: {
         type: `InstagramContent`,
         content: nodeContent,
-        contentDigest: nodeContentDigest
-      }
+        contentDigest: nodeContentDigest,
+      },
     })
+
+    // Create local image node
+    await createInstagramNode(nodeData, getCache, createNode, createNodeId)
 
     return nodeData
   }

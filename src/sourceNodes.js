@@ -4,16 +4,16 @@ import queryString from "query-string"
 import createInstagramNode from "./createInstagramNode"
 
 const defaultOptions = {
-  limit: 30,
-  firstPageOnly: false,
+  limit: Infinity,
+  pageLimit: 30
 }
 
 async function sourceNodes({ actions, createNodeId, getCache }, configOptions) {
   const { createNode } = actions
   delete configOptions.plugins
   const config = { ...defaultOptions, ...configOptions }
-  const shouldFetchOnlyFistPage = config.firstPageOnly
-  const apiOptions = queryString.stringify({limit: config.limit, access_token: config.access_token})
+  const { limit } = config
+  const apiOptions = queryString.stringify({limit: config.pageLimit, access_token: config.access_token})
   const apiUrl = `https://graph.instagram.com/me/media?fields=id,media_url,media_type,permalink,timestamp,caption,username,thumbnail_url,children{id,media_url,media_type,thumbnail_url,timestamp}&${apiOptions}`
 
 
@@ -35,7 +35,7 @@ async function sourceNodes({ actions, createNodeId, getCache }, configOptions) {
     data = data.concat(response.data)
     let next_url = response?.paging?.next
 
-    if (!shouldFetchOnlyFistPage && next_url) {
+    if (data.length < limit && next_url) {
       return getData(next_url, data)
     }
 
@@ -44,7 +44,10 @@ async function sourceNodes({ actions, createNodeId, getCache }, configOptions) {
 
   // Create nodes
   const createNodes = async (API) => {
-    const data = await getData(API).then((res) => res)
+    let data = await getData(API).then((res) => res)
+    if(data.length > limit) {
+      data = data.slice(0, limit)
+    }
     for (const item of data) {
       if (item.id !== undefined && ["IMAGE", "CAROUSEL_ALBUM", "VIDEO"].includes(item.media_type)) {
         const nodeData = await processMedia(item)

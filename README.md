@@ -68,8 +68,8 @@ query myQuery {
 | Option        | Type              | Description                                            |
 | ------------- | ----------------- | ------------------------------------------------------ |
 | access_token  | string            | Your access token                                      |
-| limit         | number (optional) | Limit number of posts to fetch per page. Default is 30 |
-| firstPageOnly | bool (optional)   | Only fetch the first page                              |
+| limit         | number (optional) | Limit number of posts. Default is infinity             |
+| pageLimit     | number (optional) | Limit number of posts fetched per page. Default is 30  |
 
 ## Contribute
 

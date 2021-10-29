@@ -3,15 +3,19 @@ import fetch from "node-fetch"
 import queryString from "query-string"
 import createInstagramNode from "./createInstagramNode"
 
+const defaultOptions = {
+  limit: 30,
+  firstPageOnly: false,
+}
+
 async function sourceNodes({ actions, createNodeId, getCache }, configOptions) {
   const { createNode } = actions
   delete configOptions.plugins
-  const apiOptions = queryString.stringify(configOptions)
-  const apiUrl = `https://graph.instagram.com/me/media?\
-  fields=id,media_url,media_type,permalink,timestamp,caption,username,thumbnail_url,children{id,media_url,media_type,thumbnail_url,timestamp}\
-  &${apiOptions}\
-  &limit=30
-  `
+  const config = { ...defaultOptions, ...configOptions }
+  const shouldFetchOnlyFistPage = config.firstPageOnly
+  const apiOptions = queryString.stringify({limit: config.limit, access_token: config.access_token})
+  const apiUrl = `https://graph.instagram.com/me/media?fields=id,media_url,media_type,permalink,timestamp,caption,username,thumbnail_url,children{id,media_url,media_type,thumbnail_url,timestamp}&${apiOptions}`
+
 
   // Helper function to fetch and parse data to JSON
   const fetchAndParse = async (api) => {
@@ -31,7 +35,7 @@ async function sourceNodes({ actions, createNodeId, getCache }, configOptions) {
     data = data.concat(response.data)
     let next_url = response?.paging?.next
 
-    if (next_url) {
+    if (!shouldFetchOnlyFistPage && next_url) {
       return getData(next_url, data)
     }
 

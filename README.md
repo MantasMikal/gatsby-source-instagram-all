@@ -11,7 +11,7 @@
 {
      resolve: `gatsby-source-instagram-all`,
      options: {
-       access_token: "YOUR_ACCESS_TOKEN"
+       access_token: "YOUR_ACCESS_TOKEN",
      }
 }
 ```
@@ -61,14 +61,15 @@ query myQuery {
 | thumbnail_url | The Media's thumbnail image URL. Only available on VIDEO Media.                                                                       |
 | timestamp     | The Media's publish date in ISO 8601 format.                                                                                          |
 | username      | The Media owner's username.                                                                                                           |
-| album         | The CAROUSEL_ALBUM media. Has the same fields as the root media node                                                                  | 
+| album         | The CAROUSEL_ALBUM media. Has the same fields as the root media node                                                                  |
+
 ## Plugin Options
 
-| Option       | Type              | Description                                                         |
-| ------------ | ----------------- | ------------------------------------------------------------------- |
-| access_token | string            | Your access token                                                   |
-| max_id       | string (optional) | Option to return media earlier than, but not including, this max_id |
-| min_id       | string (optional) | Option to return media later than, and including, this min_id       |
+| Option        | Type              | Description                                            |
+| ------------- | ----------------- | ------------------------------------------------------ |
+| access_token  | string            | Your access token                                      |
+| limit         | number (optional) | Limit number of posts to fetch per page. Default is 30 |
+| firstPageOnly | bool (optional)   | Only fetch the first page                              |
 
 ## Contribute
 

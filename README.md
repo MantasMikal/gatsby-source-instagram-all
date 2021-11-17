@@ -69,7 +69,7 @@ query myQuery {
 | ------------- | ----------------- | ------------------------------------------------------ |
 | access_token  | string            | Your access token                                      |
 | limit         | number (optional) | Limit number of posts. Default is infinity             |
-| pageLimit     | number (optional) | Limit number of posts fetched per page. Default is 30  |
+| pageLimit     | number (optional) | Limit number of posts fetched per request. Default is 30  |
 
 ## Contribute
 

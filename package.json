@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-instagram-all",
-  "description": "Gatsby source plugin for fetching all instagram posts",
+  "description": "Gatsby source plugin for fetching all your instagram media",
   "version": "5.2.1",
   "author": "Mantas Mikalauskas <mantas.codes@gmail.com>",
   "bugs": {

@@ -27,7 +27,7 @@ const createInstagramNode = async (node, getCache, createNode, createNodeId) => 
   if (node.internal.type === "InstagramContent") {
     await createInstagramFileNode(node, getCache, createNode, createNodeId)
     if (node.album && node.album.length > 0) {
-      Promise.all(
+      await Promise.all(
         node.album.map(async (albumNode) => createInstagramFileNode(albumNode, getCache, createNode, createNodeId))
       )
     }
